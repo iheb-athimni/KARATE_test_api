@@ -17,7 +17,7 @@ on:
 
 jobs:
  build:
-  runs-on: windows-latest
+  runs-on: ubuntu-latest
 
   #   steps:
   steps:
@@ -30,19 +30,7 @@ jobs:
       with:
         java-version: 1.8
 
-    - name:  Install Google Chrome # Using shell script to install Google Chrome
-      run:   |
-       chmod +x ./scriptInstal/chromScript.sh
-                   ./scriptInstal/chromScript.sh
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -Dbrowser=chrome
-
-    - name: step 3 - Setup Firefox browser
-      run: |
-        chmod +x ./scriptInstal/fireFoxScript.sh
-                 ./scriptInstal/fireFoxScript.sh
-
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml -Dbrowser=firefox
+      run: mvn clean test
 
 #   - name: Build with Maven
